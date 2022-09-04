@@ -2,14 +2,15 @@
 # this is the code for un-sharped mask
 # author: Arif Shariar Rahman
 # email: 1705095@ugrad.cse.buet.ac.bd
-#
+# author: Sadia Saman
+# email: 1705102@ugrad.cse.buet.ac.bd
 # algorithm of un-sharped mask:
 # 1. convolve the image with a gaussian filter
 # 2. subtract the gaussian filtered image from the original image
 # 3. add the result to the original image
 ###################################
 
-import imageio
+import imageio.v2 as imageio
 import numpy as np
 
 from scipy.ndimage import gaussian_filter
