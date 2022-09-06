@@ -57,3 +57,7 @@ for i in range(border, shape[0] - border):
         cdf = Utils.calculate_cdf(clipped_histogram, bins)
 
         padded_equalized_image[i][j] = cdf[padded_image[i][j]]
+
+equalized_image = padded_equalized_image[border:shape[0] - border, border:shape[1] - border].astype(np.uint8)
+
+imageio.imwrite('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010_equalized.jpg', equalized_image)
