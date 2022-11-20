@@ -19,53 +19,8 @@
 
 import imageio.v2 as imageio
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.fftpack import fft2, ifft2, fftshift
-from collections import OrderedDict
-
-def convert_to_grayscale(image_input):
-    """
-    Convert the image to grayscale
-    :param image_input: the image to be converted
-    :return: the grayscale image
-    """
-    red_value = image_input[:, :, 0] * 0.2989
-    green_value = image_input[:, :, 1] * 0.5870
-    blue_value = image_input[:, :, 2] * 0.1140
-    converted_image = red_value + green_value + blue_value
-    return converted_image.astype(np.uint8)
-
-
-def normalize_image(old_minimum_value, old_max_value, new_min_value, new_max_value, value):
-    """
-    This function normalizes the old values to the new value
-
-    parameter:
-        old_minimum_value: minimum value of the old range
-        old_max_value: maximum value of the old range
-        new_min_value: minimum value of the new range
-        new_max_value: maximum value of the new range
-        value: the value to be normalized
-    :return: normalized value
-    """
-
-    ratio = (value - old_minimum_value) / (old_max_value - old_minimum_value)
-    return (new_min_value + ratio * (new_max_value - new_min_value)).astype(np.uint8)
-
-
-def histogram(data):
-    """
-    Calculates histogram of the data
-    :param data: data for histogram
-    :return: histogram, bins
-    """
-    pixels, count = np.unique(data, return_counts=True)
-    _hist = OrderedDict()
-
-    for _i in range(len(pixels)):
-        _hist[pixels[_i]] = count[_i]
-
-    return np.array(list(_hist.values())), np.array(list(_hist.keys()))
+from codes.Utils import convert_to_grayscale, normalize_image, histogram
 
 
 def hef(image_in: np.ndarray) -> np.ndarray:
