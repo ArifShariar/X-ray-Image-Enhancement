@@ -16,16 +16,18 @@ import numpy as np
 from scipy.ndimage import gaussian_filter
 from skimage import img_as_float
 
-radius = 5
-amount = 2
 
-image = imageio.imread('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010.jpg')
-image = img_as_float(image)
+def unsharped_masking(radius: int, amount: int, image: np.ndarray) -> np.ndarray:
+    blurred = gaussian_filter(image, sigma=radius)
+    mask = image - blurred
+    sharpened = image + amount * mask
+    sharpened = np.clip(sharpened, 0, 1)
+    sharpened = (sharpened * 255).astype(np.uint8)
+    return sharpened
 
-blurred = gaussian_filter(image, sigma=radius)
-mask = image - blurred
-sharpened = image + amount * mask
-sharpened = np.clip(sharpened, 0, 1)
-sharpened = (sharpened * 255).astype(np.uint8)
 
-imageio.imwrite('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010_sharpened.jpg', sharpened)
+if __name__ == '__main__':
+    image = imageio.imread('D:\\Pycharm\\X-ray-Image-Enhancement\\data\\010.jpg')
+    image = img_as_float(image)
+    sharpened_image = unsharped_masking(5, 2, image)
+    imageio.imwrite('D:\\Pycharm\\X-ray-Image-Enhancement\\data\\010_UM_new.jpg', sharpened_image)
