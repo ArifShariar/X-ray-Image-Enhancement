@@ -20,12 +20,12 @@
 import imageio.v2 as imageio
 import numpy as np
 from scipy.fftpack import fft2, ifft2, fftshift
+
+import codes.directory
 from codes.Utils import convert_to_grayscale, normalize_image, histogram
 
 
 def hef(image_in: np.ndarray) -> np.ndarray:
-    # image = imageio.imread('D:\\Pycharm\\X-ray-Image-Enhancement\\data\\010.jpg')
-
     # convert the image to grayscale
     image_greyscale = convert_to_grayscale(image_in)
 
@@ -74,6 +74,6 @@ def hef(image_in: np.ndarray) -> np.ndarray:
 
 
 if __name__ == '__main__':
-    image = imageio.imread('D:\\Pycharm\\X-ray-Image-Enhancement\\data\\010.jpg')
+    image = imageio.imread(codes.directory.parent_dir + '\\data\\010.jpg')
     image = hef(image)
-    imageio.imwrite('D:\\Pycharm\\X-ray-Image-Enhancement\\data\\010_hef_new.jpg', image)
+    imageio.imwrite(codes.directory.parent_dir + '\\data\\010_hef.jpg', image)
