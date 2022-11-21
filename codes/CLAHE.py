@@ -19,18 +19,15 @@
 import Utils as Utils
 import imageio.v2 as imageio
 import numpy as np
-import matplotlib.pyplot as plt
-from collections import Counter
+import codes.directory
 
-from skimage import img_as_float
-
-image = imageio.imread('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010.jpg')
+image = imageio.imread(codes.directory.parent_dir + "\\data\\010.jpg")
 
 if len(image.shape) > 2:
     image = Utils.convert_to_grayscale(image)
 
 normalized_image = Utils.normalize_image(np.min(image), np.max(image), 0, 255, image)
-imageio.imwrite('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010_normalized.jpg', normalized_image)
+imageio.imwrite(codes.directory.parent_dir + "\\data\\010_normalized_manual_clahe.jpg", normalized_image)
 
 window_size = 100
 clip_limit = 150
@@ -60,4 +57,4 @@ for i in range(border, shape[0] - border):
 
 equalized_image = padded_equalized_image[border:shape[0] - border, border:shape[1] - border].astype(np.uint8)
 
-imageio.imwrite('/home/arif/PycharmProjects/X-ray-Image-Enhancement/data/010_equalized.jpg', equalized_image)
+imageio.imwrite(codes.directory.parent_dir + '\\data\\010_equalized_manual_clahe.jpg', equalized_image)
