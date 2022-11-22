@@ -21,9 +21,18 @@ def plot_graphs():
             if row:
                 clahe_covid[int(row[0])] = float(row[1])
 
+    with open(codes.directory.parent_dir + codes.directory.csv_dir + 'covid_time_count_HEF.csv', 'r') as csv_file:
+        reader = csv.reader(csv_file)
+        hef_covid = {}
+
+        for row in reader:
+            if row:
+                hef_covid[int(row[0])] = float(row[1])
+
     # plot graphs
     plt.plot(list(um_covid.keys()), list(um_covid.values()), label="UM")
     plt.plot(list(clahe_covid.keys()), list(clahe_covid.values()), label="CLAHE")
+    plt.plot(list(hef_covid.keys()), list(hef_covid.values()), label="HEF")
     plt.xlabel('Number of images')
     plt.ylabel('Time taken')
     plt.title('Time taken for Covid files')
