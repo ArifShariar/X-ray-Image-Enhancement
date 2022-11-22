@@ -137,7 +137,9 @@ def benchmark_hef():
     plt.xlabel("Number of images")
     plt.ylabel("Time taken")
     plt.title("Time taken for HEF")
+    plt.legend(["Covid", "Non-Covid"])
     plt.grid()
+    plt.savefig(codes.directory.parent_dir + '\\data\\HEF_Plot.png')
     plt.show()
 
     return covid_time_count, non_covid_time_count
@@ -205,5 +207,5 @@ def benchmark_clahe():
 
 if __name__ == "__main__":
     # benchmark_um()
-    # benchmark_hef()
-    benchmark_clahe()
+    benchmark_hef()
+    # enchmark_clahe()
