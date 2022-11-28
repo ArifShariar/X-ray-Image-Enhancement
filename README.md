@@ -5,3 +5,8 @@ Enhancing the quality of X-ray images using various methods is one of the goals 
 Data was collected from the following sources:
 
  1. [Augmented COVID-19 X-ray Images Dataset](https://data.mendeley.com/datasets/2fxz4px6d8/4?fbclid=IwAR1-7Gsz9nPkFov9jOcVIKM-Iv8Ev8DzHYqmHB5m1tPbJyH--yP2iqAT7YA)
+ 2. [IEEE8083/Covid-Chestxray-dataset](https://github.com/ieee8023/covid-chestxray-dataset)
+
+
+## Benchmark
+For benchmark data, please check the [benchmarks](benchmarks) folder.
