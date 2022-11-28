@@ -20,6 +20,8 @@ iee_dir = "data\\IEEE\\"
 ieee_covid_dir = iee_dir + "Covid19-dataset\\train\\Covid\\"
 ieee_non_covid_dir = iee_dir + "Covid19-dataset\\train\\Normal\\"
 
+ct_dir = "data\\CT\\"
+
 
 
 
