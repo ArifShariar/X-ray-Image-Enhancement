@@ -33,5 +33,20 @@ def save_um_images():
     print("UM images saved")
 
 
+def save_clahe_images():
+    if not os.path.exists(os.path.join(non_covid_path, 'CLAHE_out')):
+        os.makedirs(os.path.join(non_covid_path, 'CLAHE_out'))
+
+    clahe_out_path = os.path.join(non_covid_path, 'CLAHE_out')
+
+    for i in non_covid_files:
+        image_path = os.path.join(non_covid_path, i)
+        image = cv2.imread(image_path, 0)
+        thresh_image, clahe_image = codes.CLAHE_OpenCV.clahe_opencv(image, 2.0, 8)
+        imageio.imwrite(os.path.join(clahe_out_path, i), clahe_image)
+    print("CLAHE images saved")
+
+
 if __name__ == "__main__":
-    save_um_images()
+    # save_um_images()
+    save_clahe_images()
