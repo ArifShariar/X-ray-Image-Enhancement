@@ -47,6 +47,25 @@ def save_clahe_images():
     print("CLAHE images saved")
 
 
+def save_hef_images():
+    if not os.path.exists(os.path.join(non_covid_path, 'HEF_out')):
+        os.makedirs(os.path.join(non_covid_path, 'HEF_out'))
+
+    hef_out_path = os.path.join(non_covid_path, 'HEF_out')
+
+    count = 0
+    for i in non_covid_files:
+        image_path = os.path.join(non_covid_path, i)
+        image = imageio.imread(image_path)
+        hef_image = codes.HEF.hef(image)
+        imageio.imwrite(os.path.join(hef_out_path, i), hef_image)
+        count += 1
+        if count % 100 == 0:
+            print(str(count) + " images saved")
+    print("HEF images saved")
+
+
 if __name__ == "__main__":
     # save_um_images()
-    save_clahe_images()
+    # save_clahe_images()
+    save_hef_images()
