@@ -16,18 +16,22 @@
 # 2. Calculate Cumulative distribution function (CDF) of the image
 # 3. Calculate the new pixel values using the CDF
 ###################################
+import os.path
 
 import imageio.v2 as imageio
 import numpy as np
 from scipy.fftpack import fft2, ifft2, fftshift
 
-import codes.directory
 from codes.Utils import convert_to_grayscale, normalize_image, histogram
+import codes.directory
 
 
 def hef(image_in: np.ndarray) -> np.ndarray:
     # convert the image to grayscale
-    image_greyscale = convert_to_grayscale(image_in)
+    if len(image_in.shape) > 2:
+        image_greyscale = convert_to_grayscale(image_in)
+    else:
+        image_greyscale = image_in
 
     image_in = normalize_image(np.min(image_greyscale), np.max(image_in), 0, 255, image_greyscale)
 
@@ -74,6 +78,8 @@ def hef(image_in: np.ndarray) -> np.ndarray:
 
 
 if __name__ == '__main__':
-    image = imageio.imread(codes.directory.parent_dir + '\\data\\010.jpg')
+    image_path = os.path.join(codes.directory.parent_dir, 'data', '010.jpg')
+    image = imageio.imread(image_path)
     image = hef(image)
-    imageio.imwrite(codes.directory.parent_dir + '\\data\\010_hef.jpg', image)
+    image_out = os.path.join(codes.directory.parent_dir, 'data', '010_HEF.jpg')
+    imageio.imwrite(image_out, image)

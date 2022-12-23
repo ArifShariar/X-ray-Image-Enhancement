@@ -9,6 +9,7 @@
 # 2. subtract the gaussian filtered image from the original image
 # 3. add the result to the original image
 ###################################
+import os.path
 
 import imageio.v2 as imageio
 import numpy as np
@@ -29,7 +30,9 @@ def unsharped_masking(radius: int, amount: int, image: np.ndarray) -> np.ndarray
 
 
 if __name__ == '__main__':
-    image_in = imageio.imread(codes.directory.parent_dir + '\\data\\010.jpg')
+    image_path = os.path.join(codes.directory.parent_dir, 'data', '010.jpg')
+    image_in = imageio.imread(image_path)
     image_in = img_as_float(image_in)
     sharpened_image = unsharped_masking(5, 2, image_in)
-    imageio.imwrite(codes.directory.parent_dir + '\\data\\010_UM.jpg', sharpened_image)
+    image_out = os.path.join(codes.directory.parent_dir, 'data', '010_UM_image.jpg')
+    imageio.imwrite(image_out, sharpened_image)

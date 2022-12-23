@@ -15,19 +15,23 @@
 # source : https://docs.opencv.org/3.4/d5/daf/tutorial_py_histogram_equalization.html
 # source : https://www.geeksforgeeks.org/clahe-histogram-eqalization-opencv/
 ###################################
+import os
 
 import Utils as Utils
 import imageio.v2 as imageio
 import numpy as np
 import codes.directory
 
-image = imageio.imread(codes.directory.parent_dir + "\\data\\010.jpg")
+
+image_path = os.path.join(codes.directory.parent_dir, 'data', '010.jpg')
+image = imageio.imread(image_path)
 
 if len(image.shape) > 2:
     image = Utils.convert_to_grayscale(image)
 
 normalized_image = Utils.normalize_image(np.min(image), np.max(image), 0, 255, image)
-imageio.imwrite(codes.directory.parent_dir + "\\data\\010_normalized_manual_clahe.jpg", normalized_image)
+image_out_clahe = os.path.join(codes.directory.parent_dir, 'data', '010_normalized_manual_clahe.jpg')
+imageio.imwrite(image_out_clahe, normalized_image)
 
 window_size = 100
 clip_limit = 150
@@ -57,4 +61,6 @@ for i in range(border, shape[0] - border):
 
 equalized_image = padded_equalized_image[border:shape[0] - border, border:shape[1] - border].astype(np.uint8)
 
-imageio.imwrite(codes.directory.parent_dir + '\\data\\010_equalized_manual_clahe.jpg', equalized_image)
+
+image_out_manual_clahe = os.path.join(codes.directory.parent_dir, 'data', '010_manual_clahe_equalized.jpg')
+imageio.imwrite(image_out_manual_clahe, equalized_image)

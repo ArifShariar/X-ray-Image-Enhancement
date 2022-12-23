@@ -9,18 +9,18 @@
 
 import os
 
-parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\\"
-covid_dir = "data\\COVID-19\\"
-non_covid_dir = "data\\Non-COVID-19\\"
+parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+covid_dir = os.path.join('data', 'COVID-19')
+non_covid_dir = os.path.join('data', 'Non-COVID-19')
 
 csv_dir = "benchmarks\\"
 
 
-iee_dir = "data\\IEEE\\"
-ieee_covid_dir = iee_dir + "Covid19-dataset\\train\\Covid\\"
-ieee_non_covid_dir = iee_dir + "Covid19-dataset\\train\\Normal\\"
+iee_dir = os.path.join('data', 'IEEE')
+ieee_covid_dir = os.path.join(iee_dir, 'Covid19-dataset', 'train', 'Covid')
+ieee_non_covid_dir = os.path.join(iee_dir, 'Covid19-dataset', 'train', 'Normal')
 
-ct_dir = "data\\CT\\"
+ct_dir = os.path.join('data', 'CT')
 
 
 
