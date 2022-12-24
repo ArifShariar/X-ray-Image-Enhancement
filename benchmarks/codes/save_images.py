@@ -1,3 +1,5 @@
+from skimage import img_as_float
+
 import codes.HEF
 import codes.UM
 import codes.CLAHE_OpenCV
@@ -28,6 +30,7 @@ def save_um_images():
     for i in non_covid_files:
         image_path = os.path.join(non_covid_path, i)
         image = imageio.imread(image_path)
+        image = img_as_float(image)
         um_image = codes.UM.unsharped_masking(5, 2, image)
         imageio.imwrite(os.path.join(um_image_out_path, i), um_image)
     print("UM images saved")
@@ -66,6 +69,6 @@ def save_hef_images():
 
 
 if __name__ == "__main__":
-    # save_um_images()
+    save_um_images()
     # save_clahe_images()
-    save_hef_images()
+    # save_hef_images()
